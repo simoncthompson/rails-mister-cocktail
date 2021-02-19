@@ -1,20 +1,13 @@
-cocktail_names = %w[sidecar 'old fashioned' 'gin fizz' mojito martini margerita 'aperol spritz' manhattan]
+cocktail_list = %w(sidecar 'old fashioned' 'gin fizz' mojito martini margerita 'aperol spritz' manhattan)
 
 Cocktail.destroy_all
 Ingredient.destroy_all
 Dose.destroy_all
 
-cocktails = []
-ingredients = []
-
-cocktail_names.each do |cocktail_name|
-  cocktails << Cocktail.create(name: cocktail_name)
-end
-
-50.times do
-  ingredients << Ingredient.create(name: Faker::Food.ingredient)
-end
-
-cocktails.each do |cocktail|
-  Dose.create(cocktail: cocktail, ingredient: ingredients.sample, description: Faker::Food.measurement)
+cocktail_list.each do |cocktail_name|
+  cocktail = Cocktail.create(name: cocktail_name)
+  3.times do
+    ingredient = Ingredient.create(name: Faker::Food.ingredient)
+    Dose.create(cocktail: cocktail, ingredient: ingredient, description: Faker::Food.measurement)
+  end
 end
