@@ -1,0 +1,7 @@
+<h1>Create a cocktail!</h1>
+<%= simple_form_for @cocktail do |f| %>
+  <%= f.input :name %>
+  <%= f.association :ingredients, as: :radio_buttons %>
+  <%= f.association :doses, label_method: :description, as: :radio_buttons %>
+  <%= f.button :submit %>
+<% end %>
